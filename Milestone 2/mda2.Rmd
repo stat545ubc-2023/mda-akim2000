@@ -330,7 +330,8 @@ Based on the definition above, can you identify if your data is tidy or untidy? 
 Let's look at our data.
 
 ```{r}
-head(apt_buildings)
+apt_buildings %>%
+  select(separate_gas_meters, separate_hydro_meters, separate_water_meters, fire_alarm, heating_type, intercom, laundry_room, no_of_elevators)
 ```
 Since we have a lot of data, we are going to choose 8 variables: separate_water_meters, separate_hydro_meters, separate_gas_meters, fire_alarm, heating_type, intercom, laundry_room, no_of_elevators. We can see that each row is an observation (a specific apartment), each of these variables listed above is a column, and the cells are the values for the variables/columns. For example, the fire_alarm variable that we used in our second research question is tidy because the variable is a column, each row is an observation and the cell is the value YES or NO. So  if we were to apply that about the other variables we have here, we have a tidy data! 
 

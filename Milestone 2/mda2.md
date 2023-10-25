@@ -521,25 +521,26 @@ pick 8, and explain whether the data is untidy or tidy.
 Let’s look at our data.
 
 ``` r
-head(apt_buildings)
+apt_buildings %>%
+  select(separate_gas_meters, separate_hydro_meters, separate_water_meters, fire_alarm, heating_type, intercom, laundry_room, no_of_elevators)
 ```
 
-    ## # A tibble: 6 × 40
-    ##      id air_conditioning amenities balconies barrier_free_accessi…¹ bike_parking
-    ##   <dbl> <chr>            <chr>     <chr>     <chr>                  <chr>       
-    ## 1 10359 NONE             Outdoor … YES       YES                    0 indoor pa…
-    ## 2 10360 NONE             Outdoor … YES       NO                     0 indoor pa…
-    ## 3 10361 NONE             <NA>      YES       NO                     Not Availab…
-    ## 4 10362 NONE             <NA>      YES       YES                    Not Availab…
-    ## 5 10363 NONE             <NA>      NO        NO                     12 indoor p…
-    ## 6 10364 NONE             <NA>      NO        NO                     Not Availab…
-    ## # ℹ abbreviated name: ¹​barrier_free_accessibilty_entr
-    ## # ℹ 34 more variables: exterior_fire_escape <chr>, fire_alarm <chr>,
-    ## #   garbage_chutes <chr>, heating_type <chr>, intercom <chr>,
-    ## #   laundry_room <chr>, locker_or_storage_room <chr>, no_of_elevators <dbl>,
-    ## #   parking_type <chr>, pets_allowed <chr>, prop_management_company_name <chr>,
-    ## #   property_type <chr>, rsn <dbl>, separate_gas_meters <chr>,
-    ## #   separate_hydro_meters <chr>, separate_water_meters <chr>, …
+    ## # A tibble: 3,455 × 8
+    ##    separate_gas_meters separate_hydro_meters separate_water_meters fire_alarm
+    ##    <chr>               <chr>                 <chr>                 <chr>     
+    ##  1 NO                  YES                   NO                    YES       
+    ##  2 NO                  YES                   NO                    YES       
+    ##  3 NO                  YES                   NO                    YES       
+    ##  4 NO                  YES                   NO                    YES       
+    ##  5 NO                  YES                   NO                    YES       
+    ##  6 NO                  YES                   NO                    YES       
+    ##  7 NO                  YES                   NO                    YES       
+    ##  8 NO                  YES                   NO                    YES       
+    ##  9 NO                  YES                   NO                    YES       
+    ## 10 NO                  NO                    NO                    YES       
+    ## # ℹ 3,445 more rows
+    ## # ℹ 4 more variables: heating_type <chr>, intercom <chr>, laundry_room <chr>,
+    ## #   no_of_elevators <dbl>
 
 Since we have a lot of data, we are going to choose 8 variables:
 separate_water_meters, separate_hydro_meters, separate_gas_meters,
