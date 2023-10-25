@@ -366,7 +366,8 @@ apt_buildings_untidy_data <- apt_buildings %>%
 
 ```{r}
 ###This prints our untidy data
-print(apt_buildings_untidy_data)
+apt_buildings_untidy_data %>%
+select('TypeOfMeter', 'PresenceOfMeter')
 
 ```
 
@@ -381,7 +382,8 @@ back_to_original <- apt_buildings_untidy_data %>%
   )
 
 ###This displays our reverted data
-print(back_to_original)
+back_to_original %>%
+  select('separate_gas_meters', `separate_hydro_meters`, `separate_water_meters`)
 ```
 We can see that we have our original variables/columns back! We have successfully reverted the changes.
 

@@ -587,29 +587,24 @@ apt_buildings_untidy_data <- apt_buildings %>%
 
 ``` r
 ###This prints our untidy data
-print(apt_buildings_untidy_data)
+apt_buildings_untidy_data %>%
+select('TypeOfMeter', 'PresenceOfMeter')
 ```
 
-    ## # A tibble: 10,365 × 39
-    ##       id air_conditioning amenities             balconies barrier_free_accessi…¹
-    ##    <dbl> <chr>            <chr>                 <chr>     <chr>                 
-    ##  1 10359 NONE             Outdoor rec faciliti… YES       YES                   
-    ##  2 10359 NONE             Outdoor rec faciliti… YES       YES                   
-    ##  3 10359 NONE             Outdoor rec faciliti… YES       YES                   
-    ##  4 10360 NONE             Outdoor pool          YES       NO                    
-    ##  5 10360 NONE             Outdoor pool          YES       NO                    
-    ##  6 10360 NONE             Outdoor pool          YES       NO                    
-    ##  7 10361 NONE             <NA>                  YES       NO                    
-    ##  8 10361 NONE             <NA>                  YES       NO                    
-    ##  9 10361 NONE             <NA>                  YES       NO                    
-    ## 10 10362 NONE             <NA>                  YES       YES                   
+    ## # A tibble: 10,365 × 2
+    ##    TypeOfMeter           PresenceOfMeter
+    ##    <chr>                 <chr>          
+    ##  1 separate_gas_meters   NO             
+    ##  2 separate_hydro_meters YES            
+    ##  3 separate_water_meters NO             
+    ##  4 separate_gas_meters   NO             
+    ##  5 separate_hydro_meters YES            
+    ##  6 separate_water_meters NO             
+    ##  7 separate_gas_meters   NO             
+    ##  8 separate_hydro_meters YES            
+    ##  9 separate_water_meters NO             
+    ## 10 separate_gas_meters   NO             
     ## # ℹ 10,355 more rows
-    ## # ℹ abbreviated name: ¹​barrier_free_accessibilty_entr
-    ## # ℹ 34 more variables: bike_parking <chr>, exterior_fire_escape <chr>,
-    ## #   fire_alarm <chr>, garbage_chutes <chr>, heating_type <chr>, intercom <chr>,
-    ## #   laundry_room <chr>, locker_or_storage_room <chr>, no_of_elevators <dbl>,
-    ## #   parking_type <chr>, pets_allowed <chr>, prop_management_company_name <chr>,
-    ## #   property_type <chr>, rsn <dbl>, site_address <chr>, …
 
 Now let’s use pivot_wider and get our data back to the original format.
 
@@ -622,29 +617,24 @@ back_to_original <- apt_buildings_untidy_data %>%
   )
 
 ###This displays our reverted data
-print(back_to_original)
+back_to_original %>%
+  select('separate_gas_meters', `separate_hydro_meters`, `separate_water_meters`)
 ```
 
-    ## # A tibble: 3,455 × 40
-    ##       id air_conditioning amenities             balconies barrier_free_accessi…¹
-    ##    <dbl> <chr>            <chr>                 <chr>     <chr>                 
-    ##  1 10359 NONE             Outdoor rec faciliti… YES       YES                   
-    ##  2 10360 NONE             Outdoor pool          YES       NO                    
-    ##  3 10361 NONE             <NA>                  YES       NO                    
-    ##  4 10362 NONE             <NA>                  YES       YES                   
-    ##  5 10363 NONE             <NA>                  NO        NO                    
-    ##  6 10364 NONE             <NA>                  NO        NO                    
-    ##  7 10365 NONE             <NA>                  NO        YES                   
-    ##  8 10366 CENTRAL AIR      Indoor pool , Indoor… YES       NO                    
-    ##  9 10367 NONE             <NA>                  YES       YES                   
-    ## 10 10368 NONE             Indoor recreation ro… YES       YES                   
+    ## # A tibble: 3,455 × 3
+    ##    separate_gas_meters separate_hydro_meters separate_water_meters
+    ##    <chr>               <chr>                 <chr>                
+    ##  1 NO                  YES                   NO                   
+    ##  2 NO                  YES                   NO                   
+    ##  3 NO                  YES                   NO                   
+    ##  4 NO                  YES                   NO                   
+    ##  5 NO                  YES                   NO                   
+    ##  6 NO                  YES                   NO                   
+    ##  7 NO                  YES                   NO                   
+    ##  8 NO                  YES                   NO                   
+    ##  9 NO                  YES                   NO                   
+    ## 10 NO                  NO                    NO                   
     ## # ℹ 3,445 more rows
-    ## # ℹ abbreviated name: ¹​barrier_free_accessibilty_entr
-    ## # ℹ 35 more variables: bike_parking <chr>, exterior_fire_escape <chr>,
-    ## #   fire_alarm <chr>, garbage_chutes <chr>, heating_type <chr>, intercom <chr>,
-    ## #   laundry_room <chr>, locker_or_storage_room <chr>, no_of_elevators <dbl>,
-    ## #   parking_type <chr>, pets_allowed <chr>, prop_management_company_name <chr>,
-    ## #   property_type <chr>, rsn <dbl>, site_address <chr>, …
 
 We can see that we have our original variables/columns back! We have
 successfully reverted the changes.
