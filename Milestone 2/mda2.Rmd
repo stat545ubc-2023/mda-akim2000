@@ -332,7 +332,7 @@ Let's look at our data.
 ```{r}
 head(apt_buildings)
 ```
-Since we have a lot of data, we are going to choose 8 variables: separate_water_meters, separate_hydro_meters, separate_gas_meters, fire_alarm, heating_type, intercom, laundry_room, no_of_elevators. We can see that each row is an observation (a specific apartment), each of these variables listed above is a column, and the cells are the values for the variables/columns. So we have a tidy data! 
+Since we have a lot of data, we are going to choose 8 variables: separate_water_meters, separate_hydro_meters, separate_gas_meters, fire_alarm, heating_type, intercom, laundry_room, no_of_elevators. We can see that each row is an observation (a specific apartment), each of these variables listed above is a column, and the cells are the values for the variables/columns. For example, the fire_alarm variable that we used in our second research question is tidy because the variable is a column, each row is an observation and the cell is the value YES or NO. So  if we were to apply that about the other variables we have here, we have a tidy data! 
 
 <!----------------------------------------------------------------------------->
 
@@ -351,7 +351,7 @@ We will first load tidyr
 library(tidyr)
 ```
 
-We will take the three variables, separate_gas_meters, separate_hydro_meters, and separate_water_meters, and use pivot_longer. We will make new variables called "TypeOfMeter" and "PresenceOfMeter". The resulting dataset would be untidy, since the TypeOfMeter variable combines information about different types of meters.
+We will take the three variables, separate_gas_meters, separate_hydro_meters, and separate_water_meters, and use pivot_longer. We will make new variables called "TypeOfMeter" and "PresenceOfMeter". The resulting dataset would be untidy, since the TypeOfMeter variable combines information about different types of meters. This would be untidy if we wanted to compare the presence of gas meters vs hydro meters, as each row is not an observation and the variables are not in their own columns.
 
 ```{r}
 ###I will pivot longer into a new version of the data so we don't have to worry about accidentally messing up other stuff in the process and have the untidy version remaining for further use later if needed.
@@ -371,7 +371,7 @@ select('TypeOfMeter', 'PresenceOfMeter')
 
 ```
 
-Now let's use pivot_wider and get our data back to the original format.
+Now let's use pivot_wider and get our data back to the original format by making the values in the TypeOfMeter variable into columns with the values from PresenceOfMeter variable.
 
 ```{r}
 ###This uses pivot_wider to revert the changes back to normal
